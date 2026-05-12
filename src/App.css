@@ -1,0 +1,155 @@
+.app {
+  text-align: center;
+}
+
+.app h1 {
+  font-size: 2.5rem;
+  margin-bottom: 24px;
+  color: #e94560;
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter input {
+  padding: 10px 16px;
+  border: 2px solid #16213e;
+  border-radius: 8px;
+  background: #16213e;
+  color: #e0e0e0;
+  font-size: 1rem;
+  width: 220px;
+}
+
+.filter input::placeholder {
+  color: #6b7280;
+}
+
+.filter input:focus {
+  outline: none;
+  border-color: #e94560;
+}
+
+.add-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  background: #e94560;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background 0.3s;
+}
+
+.add-btn:hover {
+  background: #c73050;
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  margin: 0 auto 24px;
+  padding: 20px;
+  background: #16213e;
+  border-radius: 12px;
+}
+
+.add-form input,
+.add-form textarea {
+  padding: 10px 14px;
+  border: 2px solid #1a1a2e;
+  border-radius: 8px;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.add-form textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.add-form input:focus,
+.add-form textarea:focus {
+  outline: none;
+  border-color: #e94560;
+}
+
+.add-form button[type="submit"] {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #e94560;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.add-form button[type="submit"]:hover {
+  background: #c73050;
+}
+
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 20px 0;
+}
+
+.movie-card {
+  background: #16213e;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.movie-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(233, 69, 96, 0.2);
+}
+
+.movie-poster {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.movie-info {
+  padding: 16px;
+}
+
+.movie-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #e94560;
+}
+
+.movie-description {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.movie-rating {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f59e0b;
+}
+
+.no-movies {
+  grid-column: 1 / -1;
+  padding: 40px;
+  font-size: 1.2rem;
+  color: #6b7280;
+}
