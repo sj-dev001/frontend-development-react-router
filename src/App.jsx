@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import MovieList from './components/MovieList'
+import MovieDetail from './components/MovieDetail'
 import Filter from './components/Filter'
 import './App.css'
 
@@ -10,6 +12,7 @@ const initialMovies = [
     description: 'A thief who steals corporate secrets through dream-sharing technology is given the task of planting an idea into the mind of a CEO.',
     posterURL: 'https://m.media-amazon.com/images/I/91Rc8GAmebL._AC_SL1500_.jpg',
     rating: 8.8,
+    trailerURL: 'https://www.youtube.com/embed/YoHD9XEInc0',
   },
   {
     id: 2,
@@ -17,6 +20,7 @@ const initialMovies = [
     description: 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
     posterURL: 'https://m.media-amazon.com/images/I/81N7FmIJtmL._AC_SL1500_.jpg',
     rating: 9.0,
+    trailerURL: 'https://www.youtube.com/embed/EXeTwQWrcwY',
   },
   {
     id: 3,
@@ -24,11 +28,11 @@ const initialMovies = [
     description: "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot is tasked with piloting a spacecraft along with a team of researchers to find a new planet for humans.",
     posterURL: 'https://m.media-amazon.com/images/I/91kFYg4fX3L._AC_SL1500_.jpg',
     rating: 8.7,
+    trailerURL: 'https://www.youtube.com/embed/zSWdZVtXT7E',
   },
 ]
 
-function App() {
-  const [movies, setMovies] = useState(initialMovies)
+function Home({ movies, setMovies }) {
   const [titleFilter, setTitleFilter] = useState('')
   const [ratingFilter, setRatingFilter] = useState('')
   const [showForm, setShowForm] = useState(false)
@@ -37,6 +41,7 @@ function App() {
     description: '',
     posterURL: '',
     rating: '',
+    trailerURL: '',
   })
 
   const filteredMovies = movies.filter((movie) => {
@@ -62,14 +67,15 @@ function App() {
       description: newMovie.description,
       posterURL: newMovie.posterURL,
       rating: Number(newMovie.rating) || 0,
+      trailerURL: newMovie.trailerURL,
     }
     setMovies((prev) => [...prev, movie])
-    setNewMovie({ title: '', description: '', posterURL: '', rating: '' })
+    setNewMovie({ title: '', description: '', posterURL: '', rating: '', trailerURL: '' })
     setShowForm(false)
   }
 
   return (
-    <div className="app">
+    <>
       <h1>Movie App</h1>
 
       <Filter
@@ -115,11 +121,30 @@ function App() {
             value={newMovie.rating}
             onChange={handleInputChange}
           />
+          <input
+            name="trailerURL"
+            placeholder="Trailer Embed URL"
+            value={newMovie.trailerURL}
+            onChange={handleInputChange}
+          />
           <button type="submit">Add</button>
         </form>
       )}
 
       <MovieList movies={filteredMovies} />
+    </>
+  )
+}
+
+function App() {
+  const [movies, setMovies] = useState(initialMovies)
+
+  return (
+    <div className="app">
+      <Routes>
+        <Route path="/" element={<Home movies={movies} setMovies={setMovies} />} />
+        <Route path="/movie/:id" element={<MovieDetail movies={movies} />} />
+      </Routes>
     </div>
   )
 }
